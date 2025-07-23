@@ -71,6 +71,47 @@
       animation: fadeIn 1.2s 1.1s both;
       opacity: 0;
     }
+    .login-box {
+      margin: 120px auto 0 auto;
+      background: white;
+      padding: 40px 32px;
+      border-radius: 18px;
+      max-width: 380px;
+      box-shadow: 0 2px 22px rgba(0,0,0,0.10);
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      align-items: center;
+      animation: slideIn 1s cubic-bezier(.32,.72,.48,1.35) forwards;
+    }
+    input[type="password"] {
+      padding: 12px 14px;
+      border-radius: 8px;
+      border: 1px solid #aaa;
+      font-size: 1.05rem;
+      width: 70%;
+      margin-bottom: 8px;
+      text-align: center;
+    }
+    .login-btn {
+      padding: 12px 26px;
+      background: #8c2131;
+      color: white;
+      border: none;
+      border-radius: 24px;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-top: 5px;
+      transition: background 0.2s;
+    }
+    .login-btn:hover {
+      background: #c52d46;
+    }
+    .error {
+      color: #c52d46;
+      margin-top: 5px;
+      font-size: 0.99rem;
+    }
     @media (max-width: 900px) {
       .pdf-viewer {
         height: 60vh;
@@ -78,6 +119,9 @@
       }
       .main-title {
         font-size: 1.4rem;
+      }
+      .login-box {
+        padding: 22px 7px;
       }
     }
     @media (max-width: 600px) {
@@ -88,10 +132,20 @@
       .main-title {
         font-size: 1.05rem;
       }
+      .login-box {
+        margin-top: 40px;
+      }
     }
   </style>
 </head>
 <body>
+  <div id="loginSection" class="login-box">
+    <h2>Enter Password to View Portfolio</h2>
+    <input type="password" id="passwordInput" placeholder="Enter password" autocomplete="current-password" />
+    <button class="login-btn" onclick="checkLogin()">Submit</button>
+    <div class="error" id="errorMsg"></div>
+  </div>
+  <div id="mainContent" style="display:none;">
     <h1 class="main-title">FCP Wines Portfolio</h1>
     <div class="subtitle">
       Welcome to our online portfolio.<br>
@@ -105,5 +159,26 @@
       src="https://drive.google.com/file/d/1jAMEEeRAMj8D4W8JCtg4Jv4g50dOMm_S/preview"
       allow="autoplay"
     ></iframe>
+  </div>
+  <script>
+    // Set your password here:
+    var correctPassword = 'fcp2025'; // Change this to your chosen password
+
+    function checkLogin() {
+      var password = document.getElementById('passwordInput').value;
+      var errorMsg = document.getElementById('errorMsg');
+      if (password !== correctPassword) {
+        errorMsg.textContent = "Incorrect password. Please try again.";
+        return;
+      }
+      document.getElementById('loginSection').style.display = 'none';
+      document.getElementById('mainContent').style.display = 'block';
+      window.scrollTo(0,0);
+    }
+    // Allow pressing Enter to submit
+    document.getElementById('passwordInput').addEventListener('keyup', function(event) {
+      if (event.key === 'Enter') checkLogin();
+    });
+  </script>
 </body>
 </html>
