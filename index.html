@@ -9,10 +9,8 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: flex-start;
       min-height: 100vh;
       margin: 0;
-      padding: 0;
     }
     .card {
       background: white;
@@ -24,10 +22,30 @@
       margin-bottom: 30px;
       width: 90%;
       max-width: 900px;
+      opacity: 0;
+      transform: translateY(60px);
+      animation: slideIn 1s cubic-bezier(.32,.72,.48,1.35) forwards;
+    }
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(60px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
     h1 {
       color: #8c2131;
       margin-bottom: 16px;
+      font-size: 2.5rem;
+      letter-spacing: 2px;
+    }
+    p {
+      font-size: 1.15rem;
+      color: #333;
+      margin-bottom: 24px;
     }
     .btn {
       display: inline-block;
@@ -38,17 +56,23 @@
       border-radius: 30px;
       font-size: 18px;
       text-decoration: none;
-      margin-top: 16px;
-      transition: background 0.2s;
+      margin-bottom: 10px;
+      margin-top: 8px;
+      transition: background 0.2s, box-shadow 0.2s;
+      box-shadow: 0 1px 6px rgba(140,33,49,0.12);
     }
     .btn:hover {
       background: #c52d46;
+      box-shadow: 0 4px 14px rgba(140,33,49,0.18);
     }
     .pdf-viewer {
       width: 100%;
       height: 700px;
       border: 1px solid #eee;
-      margin-top: 20px;
+      margin-top: 24px;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #f9f9f9;
     }
     @media (max-width: 700px) {
       .pdf-viewer {
@@ -57,6 +81,12 @@
       .card {
         padding: 12px;
       }
+      h1 {
+        font-size: 1.5rem;
+      }
+      p {
+        font-size: 1rem;
+      }
     }
   </style>
 </head>
@@ -64,17 +94,17 @@
   <div class="card">
     <h1>FCP Wines Portfolio</h1>
     <p>
-      Welcome to our online portfolio. You can browse it below or download the PDF.
+      Welcome to our online portfolio.<br>
+      Click "Preview Portfolio" to view it full-screen.
     </p>
-    <a class="btn" href="https://drive.google.com/file/d/18vYs0bVvC8-swkFRRlvsj61wUc1It59Y/view?usp=drive_link" target="_blank">
-      Download Portfolio (PDF)
+    <a class="btn" href="https://drive.google.com/file/d/1jAMEEeRAMj8D4W8JCtg4Jv4g50dOMm_S/preview" target="_blank">
+      Preview Portfolio
     </a>
     <div class="pdf-viewer">
       <iframe 
-        src="https://drive.google.com/file/d/18vYs0bVvC8-swkFRRlvsj61wUc1It59Y/preview" 
+        src="https://drive.google.com/file/d/1jAMEEeRAMj8D4W8JCtg4Jv4g50dOMm_S/preview"
         width="100%" 
         height="100%" 
-        allow="autoplay"
         style="border:0;">
       </iframe>
     </div>
